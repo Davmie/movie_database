@@ -36,10 +36,10 @@ type UserHandler struct {
 // @Accept	 application/json
 // @Produce  application/json
 // @Param    user body LoginForm true "user login and password"
-// @Success 200 {object} TokenForm.Token "User signed in"
-// @Failure 400 {object} http.Error "invalid body"
-// @Failure 404 {object} http.Error "User not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Success 200 {object} string "User signed in"
+// @Failure 400 {object} nil "invalid body"
+// @Failure 404 {object} nil "User not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /users/login [post]
 func (uh *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 	logForm := &LoginForm{}

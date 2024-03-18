@@ -1,0 +1,499 @@
+definitions:
+  delivery.LoginForm:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    type: object
+  models.Actor:
+    properties:
+      birthday:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: integer
+      id:
+        type: integer
+      lastName:
+        type: string
+    type: object
+  models.Movie:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      rating:
+        type: integer
+      releaseDate:
+        type: string
+      title:
+        type: string
+    type: object
+host: localhost:8085
+info:
+  contact: {}
+  title: MovieDataBase Swagger API
+  version: "1.0"
+paths:
+  /actors:
+    post:
+      consumes:
+      - application/json
+      description: Create an actor
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: actor info
+        in: body
+        name: actor
+        required: true
+        schema:
+          $ref: '#/definitions/models.Actor'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: actor created
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "400":
+          description: invalid body
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "500":
+          description: internal server error
+      summary: Create an actor
+      tags:
+      - actors
+  /actors/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete info about an actor by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ACT_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Actor deleted
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Actor not found
+        "500":
+          description: internal server error
+      summary: Delete actor
+      tags:
+      - actors
+    get:
+      consumes:
+      - application/json
+      description: Get info about an actor by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ACT_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get actor
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Actor not found
+        "500":
+          description: internal server error
+      summary: Get actor
+      tags:
+      - actors
+    put:
+      consumes:
+      - application/json
+      description: Update info about an actor by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ACT_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: actor info
+        in: body
+        name: actor
+        required: true
+        schema:
+          $ref: '#/definitions/models.Actor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Actor updated
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "400":
+          description: invalid body
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Actor not found
+        "500":
+          description: internal server error
+      summary: Update actor
+      tags:
+      - actors
+  /actors/{id}/movies:
+    get:
+      consumes:
+      - application/json
+      description: Get list of actor's movies by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ACT_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get movies by actor
+          schema:
+            items:
+              $ref: '#/definitions/models.Actor'
+            type: array
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Actor not found
+        "500":
+          description: internal server error
+      summary: Get actor's movies
+      tags:
+      - actors
+  /movies/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete info about a movie by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: MOV_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Movie deleted
+          schema:
+            $ref: '#/definitions/models.Movie'
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Movie not found
+        "500":
+          description: internal server error
+      summary: Delete movie
+      tags:
+      - movies
+    get:
+      consumes:
+      - application/json
+      description: Get info about a movie by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: MOV_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get movie
+          schema:
+            $ref: '#/definitions/models.Movie'
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Movie not found
+        "500":
+          description: internal server error
+      summary: Get movie
+      tags:
+      - movies
+    put:
+      consumes:
+      - application/json
+      description: Update info about a movie by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: MOV_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: movie info
+        in: body
+        name: movie
+        required: true
+        schema:
+          $ref: '#/definitions/models.Movie'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Movie updated
+          schema:
+            $ref: '#/definitions/models.Movie'
+        "400":
+          description: invalid body
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Movie not found
+        "500":
+          description: internal server error
+      summary: Update movie
+      tags:
+      - movies
+  /movies/{id}/actors:
+    get:
+      consumes:
+      - application/json
+      description: Get list of movies' actors by id
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: MOV_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get actors by movie
+          schema:
+            items:
+              $ref: '#/definitions/models.Actor'
+            type: array
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Movie not found
+        "500":
+          description: internal server error
+      summary: Get movies' actors
+      tags:
+      - movies
+  /movies/create:
+    post:
+      consumes:
+      - application/json
+      description: Create a movie
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: movie info
+        in: body
+        name: movie
+        required: true
+        schema:
+          $ref: '#/definitions/models.Movie'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: movie created
+          schema:
+            $ref: '#/definitions/models.Movie'
+        "400":
+          description: invalid body
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "500":
+          description: internal server error
+      summary: Create a movie
+      tags:
+      - movies
+  /movies/sorted:
+    get:
+      consumes:
+      - application/json
+      description: Get list of movies sorted by specified column
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: MOV_ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get sorted movies
+          schema:
+            items:
+              $ref: '#/definitions/models.Actor'
+            type: array
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Movie not found
+        "500":
+          description: internal server error
+      summary: Get sorted movies
+      tags:
+      - movies
+  /movies/title:
+    get:
+      consumes:
+      - application/json
+      description: Get list of movies by fragment of title
+      parameters:
+      - description: token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: title
+        in: query
+        name: title
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get movies by title
+          schema:
+            items:
+              $ref: '#/definitions/models.Actor'
+            type: array
+        "401":
+          description: no auth
+        "403":
+          description: forbidden
+        "404":
+          description: Movies not found
+        "500":
+          description: internal server error
+      summary: Get movies by title
+      tags:
+      - movies
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: User sign in with login and password
+      parameters:
+      - description: user login and password
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/delivery.LoginForm'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User signed in
+          schema:
+            type: string
+        "400":
+          description: invalid body
+        "404":
+          description: User not found
+        "500":
+          description: internal server error
+      summary: User login
+      tags:
+      - users
+swagger: "2.0"

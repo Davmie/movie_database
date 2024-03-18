@@ -27,10 +27,10 @@ type MovieHandler struct {
 // @Param    Authorization header string true "token"
 // @Param    movie body models.Movie true "movie info"
 // @Success 201 {object} models.Movie "movie created"
-// @Failure 400 {object} http.Error "invalid body"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 400 {object} nil "invalid body"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/create [post]
 func (mh *MovieHandler) Create(w http.ResponseWriter, r *http.Request) {
 	movie := models.Movie{}
@@ -103,10 +103,10 @@ func (mh *MovieHandler) Create(w http.ResponseWriter, r *http.Request) {
 // @Param    Authorization header string true "token"
 // @Param id path int true "MOV_ID"
 // @Success 200 {object} models.Movie "success get movie"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Movie not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Movie not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/{id} [get]
 func (mh *MovieHandler) Get(w http.ResponseWriter, r *http.Request) {
 	movieIdString := r.PathValue("MOV_ID")
@@ -162,11 +162,11 @@ func (mh *MovieHandler) Get(w http.ResponseWriter, r *http.Request) {
 // @Param id path int true "MOV_ID"
 // @Param movie body models.Movie true "movie info"
 // @Success 200 {object} models.Movie "Movie updated"
-// @Failure 400 {object} http.Error "invalid body"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Movie not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 400 {object} nil "invalid body"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Movie not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/{id} [put]
 func (mh *MovieHandler) Update(w http.ResponseWriter, r *http.Request) {
 	movieIdString := r.PathValue("MOV_ID")
@@ -254,10 +254,10 @@ func (mh *MovieHandler) Update(w http.ResponseWriter, r *http.Request) {
 // @Param    Authorization header string true "token"
 // @Param id path int true "MOV_ID"
 // @Success 200 {object} models.Movie "Movie deleted"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Movie not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Movie not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/{id} [delete]
 func (mh *MovieHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	movieIdString := r.PathValue("MOV_ID")
@@ -295,10 +295,10 @@ func (mh *MovieHandler) Delete(w http.ResponseWriter, r *http.Request) {
 // @Param    Authorization header string true "token"
 // @Param id path int true "MOV_ID"
 // @Success 200 {object} []models.Actor "success get sorted movies"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Movie not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Movie not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/sorted [get]
 func (mh *MovieHandler) GetMoviesSorted(w http.ResponseWriter, r *http.Request) {
 	column := r.FormValue("column")
@@ -345,10 +345,10 @@ func (mh *MovieHandler) GetMoviesSorted(w http.ResponseWriter, r *http.Request) 
 // @Param    Authorization header string true "token"
 // @Param id path int true "MOV_ID"
 // @Success 200 {object} []models.Actor "success get actors by movie"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Movie not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Movie not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/{id}/actors [get]
 func (mh *MovieHandler) GetActorsByMovie(w http.ResponseWriter, r *http.Request) {
 	movieIdString := r.PathValue("MOV_ID")
@@ -403,10 +403,10 @@ func (mh *MovieHandler) GetActorsByMovie(w http.ResponseWriter, r *http.Request)
 // @Param    Authorization header string true "token"
 // @Param title query int true "title"
 // @Success 200 {object} []models.Actor "success get movies by title"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Movies not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Movies not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /movies/title [get]
 func (mh *MovieHandler) GetMoviesByTitle(w http.ResponseWriter, r *http.Request) {
 	title := r.FormValue("title")

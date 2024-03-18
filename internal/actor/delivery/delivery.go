@@ -27,10 +27,10 @@ type ActorHandler struct {
 // @Param    Authorization header string true "token"
 // @Param    actor body models.Actor true "actor info"
 // @Success 201 {object} models.Actor "actor created"
-// @Failure 400 {object} http.Error "invalid body"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 400 {object} nil "invalid body"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /actors [post]
 func (ah *ActorHandler) Create(w http.ResponseWriter, r *http.Request) {
 	actor := models.Actor{}
@@ -103,10 +103,10 @@ func (ah *ActorHandler) Create(w http.ResponseWriter, r *http.Request) {
 // @Param    Authorization header string true "token"
 // @Param id path int true "ACT_ID"
 // @Success 200 {object} models.Actor "success get actor"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Actor not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Actor not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /actors/{id} [get]
 func (ah *ActorHandler) Get(w http.ResponseWriter, r *http.Request) {
 	actorIdString := r.PathValue("ACT_ID")
@@ -162,11 +162,11 @@ func (ah *ActorHandler) Get(w http.ResponseWriter, r *http.Request) {
 // @Param id path int true "ACT_ID"
 // @Param actor body models.Actor true "actor info"
 // @Success 200 {object} models.Actor "Actor updated"
-// @Failure 400 {object} http.Error "invalid body"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Actor not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 400 {object} nil "invalid body"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Actor not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /actors/{id} [put]
 func (ah *ActorHandler) Update(w http.ResponseWriter, r *http.Request) {
 	actorIdString := r.PathValue("ACT_ID")
@@ -254,10 +254,10 @@ func (ah *ActorHandler) Update(w http.ResponseWriter, r *http.Request) {
 // @Param    Authorization header string true "token"
 // @Param id path int true "ACT_ID"
 // @Success 200 {object} models.Actor "Actor deleted"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Actor not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Actor not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /actors/{id} [delete]
 func (ah *ActorHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	actorIdString := r.PathValue("ACT_ID")
@@ -295,10 +295,10 @@ func (ah *ActorHandler) Delete(w http.ResponseWriter, r *http.Request) {
 // @Param    Authorization header string true "token"
 // @Param id path int true "ACT_ID"
 // @Success 200 {object} []models.Actor "success get movies by actor"
-// @Failure 401 {object} http.Error "no auth"
-// @Failure 403 {object} http.Error "forbidden"
-// @Failure 404 {object} http.Error "Actor not found"
-// @Failure 500 {object} http.Error "internal server error"
+// @Failure 401 {object} nil "no auth"
+// @Failure 403 {object} nil "forbidden"
+// @Failure 404 {object} nil "Actor not found"
+// @Failure 500 {object} nil "internal server error"
 // @Router   /actors/{id}/movies [get]
 func (ah *ActorHandler) GetMoviesByActor(w http.ResponseWriter, r *http.Request) {
 	actorIdString := r.PathValue("ACT_ID")
