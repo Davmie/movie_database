@@ -1,0 +1,30 @@
+version: "3.5"
+services:
+  db:
+    image: "postgres:latest"
+    container_name: db
+    ports:
+      - "54322:5432"
+    volumes:
+      - ./build/data:/home/data
+      - ./build/init.sql:/docker-entrypoint-initdb.d/10-init.sql
+      - ./build/copy.sql:/docker-entrypoint-initdb.d/20-copy.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - mynetwork
+  app:
+    build: .
+    container_name: app
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8085:8080"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
